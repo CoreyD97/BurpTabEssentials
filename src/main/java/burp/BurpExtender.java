@@ -131,46 +131,28 @@ public class BurpExtender
 				Component gotLabel = ((Container) clickedTab).getComponent(0);
 				Font currentFont = gotLabel.getFont();
 				Component gotExitBox = ((Container) clickedTab).getComponent(1); // removing the X button
-				int maxSize = 40;
 				int minSize = 10;
+				int maxSize = 40;
 				int currentSize = currentFont.getSize();
 				
 				
 				if(!isCTRL_Key && !isALT_Key && !isSHIFT_Key) {
 					JPopupMenu popupMenu = createPopupMenu(tabbedPane, tabIndex, tabTitle, (Container) clickedTab);
 					popupMenu.show(tabbedPane, e.getX(), e.getY());
-				} else if (isCTRL_Key && !isALT_Key && !isSHIFT_Key) {
-					// Make it bigger and bold when rightclick + ctrl
+				} else if (!isCTRL_Key && !isALT_Key && isSHIFT_Key) {
+					// Make it bigger and bold when rightclick + shift
 					if (currentSize < maxSize) {
 						gotLabel.setFont(new Font(currentFont.getFontName(),
 								Font.BOLD, ++currentSize));
 						gotExitBox.setVisible(false);
 					}
-				} else if (isCTRL_Key && !isALT_Key && isSHIFT_Key) {
-					// Make it smaller but bold when rightclick + ctrl + shift
+				} else if (isCTRL_Key && !isALT_Key && !isSHIFT_Key) {
+					// Make it smaller but bold when rightclick + ctrl
 					if (currentSize > minSize) {
 						gotLabel.setFont(new Font(currentFont.getFontName(),
 								Font.BOLD, --currentSize));
 						gotExitBox.setVisible(false);
 					}
-				}else if (!isCTRL_Key && !isALT_Key && isSHIFT_Key) {
-					// right click with shift: should make it green and big and bold
-					Color textColor = new Color(0, 204, 51); // Green
-					tabbedPane.setBackgroundAt(tabIndex, textColor);
-					gotLabel.setFont(new Font("Dialog", Font.BOLD, 20));
-					gotExitBox.setVisible(false);
-				} else if (!isCTRL_Key && isALT_Key && !isSHIFT_Key) {
-					// right click with alt: should make it blue and big and bold
-					Color textColor = new Color(0, 102, 255); // BLUE
-					tabbedPane.setBackgroundAt(tabIndex, textColor);
-					gotLabel.setFont(new Font("Dialog", Font.BOLD, 20));
-					gotExitBox.setVisible(false);
-				} else if (isCTRL_Key && isALT_Key && !isSHIFT_Key) {
-					// right click with alt and ctrl: should make it orange and big and bold
-					Color textColor = new Color(255, 204, 51); // ORANGE
-					tabbedPane.setBackgroundAt(tabIndex, textColor);
-					gotLabel.setFont(new Font("Dialog", Font.BOLD, 20));
-					gotExitBox.setVisible(false);
 				}else if (isCTRL_Key && isALT_Key && isSHIFT_Key){
 					// this is the funky mode! we don't serve drunks! but we do serve mad keyboard skillz!!
 					// crazy mode

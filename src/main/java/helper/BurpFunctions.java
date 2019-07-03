@@ -1,11 +1,11 @@
 package helper;
 
-import java.io.PrintWriter;
-
 import burp.IBurpExtenderCallbacks;
 
+import java.io.PrintWriter;
+
 public class BurpFunctions {
-	public static Object loadExtensionSettingHelper(String name, String type, Object defaultValue,IBurpExtenderCallbacks callbacks,  PrintWriter stderr) {
+	public static Object loadExtensionSettingHelper(String name, String type, Object defaultValue, IBurpExtenderCallbacks callbacks, PrintWriter stderr) {
 		Object value = null;
 		try {
 			String temp_value = callbacks.loadExtensionSetting(name);
